@@ -22,23 +22,23 @@ public class GlobalFilter implements org.springframework.cloud.gateway.filter.Gl
 
         log.info("STEP 1 - EL FILTRO PRE");
 
-        exchange.getRequest().mutate().headers(h -> h.add("token", "123456"));
+        exchange.getRequest().mutate().headers(h -> h.add("Token", "123456"));
 
         return chain.filter(exchange).then(Mono.fromRunnable(() -> {
 
             log.info("STEP 2 - FILTRO POST");
 
-            Optional.ofNullable(exchange.getRequest().getHeaders().getFirst("token")).ifPresent(valor -> {
-                exchange.getResponse().getHeaders().add("token", valor);
+            Optional.ofNullable(exchange.getRequest().getHeaders().getFirst("Token")).ifPresent(valor -> {
+                exchange.getResponse().getHeaders().add("Token", valor);
             });
 
             exchange.getResponse().getCookies().add("COLOR", ResponseCookie.from("COLOR", "VERDE").build());
-            exchange.getResponse().getHeaders().setContentType(MediaType.TEXT_PLAIN);
+            //exchange.getResponse().getHeaders().setContentType(MediaType.TEXT_PLAIN);
         }));
     }
 
     @Override
     public int getOrder() {
-        return -1;
+        return 1;
     }
 }
