@@ -3,13 +3,13 @@ spring:
     gateway:
       routes:
         - id: product-server
-          uri: lb://product-server
+          uri: lb://product-service
           predicates:
             - Path=/api/product/**
           filters:
             - StripPrefix=2
         - id: item-server
-          uri: lb://item-server
+          uri: lb://item-service
           predicates:
             - Path=/api/item/**
           filters:
