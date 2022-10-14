@@ -3,6 +3,7 @@ package com.udemy.itemservice.Controller;
 import com.udemy.itemservice.Model.Item;
 import com.udemy.itemservice.Model.Product;
 import com.udemy.itemservice.Service.IItemService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,12 @@ public class ItemController {
     public Item detail(@PathVariable Long id, @PathVariable Integer quantity){
         return cbFactory.create("items")
                 .run(() -> serv.findById(id, quantity), e -> alternativeMethod(id, quantity, e));
+    }
+
+    @CircuitBreaker(name = "items", fallbackMethod = "alternativeMethod")
+    @GetMapping("/detail2/{id}/quantity/{quantity}")
+    public Item detail2(@PathVariable Long id, @PathVariable Integer quantity){
+        return serv.findById(id, quantity);
     }
 
     public Item alternativeMethod(Long id, Integer quantity, Throwable e)
