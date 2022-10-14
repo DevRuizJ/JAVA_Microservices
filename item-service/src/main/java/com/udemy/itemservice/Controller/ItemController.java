@@ -4,6 +4,7 @@ import com.udemy.itemservice.Model.Item;
 import com.udemy.itemservice.Model.Product;
 import com.udemy.itemservice.Service.IItemService;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 public class ItemController {
@@ -46,6 +48,13 @@ public class ItemController {
         return serv.findById(id, quantity);
     }
 
+    @CircuitBreaker(name = "items")
+    @TimeLimiter(name = "items", fallbackMethod = "alternativeMethod2")
+    @GetMapping("/detail3/{id}/quantity/{quantity}")
+    public CompletableFuture<Item> detail3(@PathVariable Long id, @PathVariable Integer quantity){
+        return CompletableFuture.supplyAsync(() -> serv.findById(id, quantity));
+    }
+
     public Item alternativeMethod(Long id, Integer quantity, Throwable e)
     {
         log.info(e.getMessage());
@@ -61,5 +70,22 @@ public class ItemController {
          item.setProduct(product);
 
          return item;
+    }
+
+    public CompletableFuture<Item> alternativeMethod2(Long id, Integer quantity, Throwable e)
+    {
+        log.info(e.getMessage());
+
+        Item item = new Item();
+
+        Product product = new Product();
+
+        item.setQuantity(quantity);
+        product.setId(id);
+        product.setName("SOny");
+        product.setPrice(500.545);
+        item.setProduct(product);
+
+        return CompletableFuture.supplyAsync(() -> item);
     }
 }
