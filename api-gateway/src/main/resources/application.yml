@@ -1,8 +1,29 @@
+resilience4j:
+  circuitBreaker:
+    configs:
+      default:
+        slidingWindowSize: 6
+        failureRateThreshold: 50
+        waitDurationInOpenState: 20s
+        permittedNumberOfCallsInHalfOpenState: 4
+        slowCallRateThreshold: 50
+        slowCallDurationThreshold: 2s
+    instances:
+      products:
+        baseConfig: default
+  timeLimiter:
+    configs:
+      default:
+        timeoutDuration: 2s
+    instances:
+      products:
+        baseConfig: default
+
 spring:
   cloud:
     gateway:
       routes:
-        - id: product-server
+        - id: product-service
           uri: lb://product-service
           predicates:
             - Path=/api/product/**
@@ -12,13 +33,14 @@ spring:
             - Query=color, verde
             - Cookie=color, azul
           filters:
+            - CircuitBreaker=products
             - StripPrefix=2
             - name: Demo
               args:
                 message: Mensaje Demo filtro personalizado =)
                 coockieName: user
                 coockieValor: JRuiz
-        - id: item-server
+        - id: item-service
           uri: lb://item-service
           predicates:
             - Path=/api/item/**
