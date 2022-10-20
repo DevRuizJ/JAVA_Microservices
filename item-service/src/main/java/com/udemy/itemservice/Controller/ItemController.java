@@ -43,7 +43,7 @@ public class ItemController {
     private Environment env;
 
     @GetMapping("/list")
-    public List<Item> list(@RequestParam(name="nombre") String nombre, @RequestHeader(name="token-request", required = false) String token){
+    public List<Item> list(@RequestParam(name="nombre", required = false) String nombre, @RequestHeader(name="token-request", required = false) String token){
 
         System.out.println(nombre);
         System.out.println(token);

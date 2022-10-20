@@ -77,7 +77,7 @@ public class ProductController {
 
     @PutMapping("/edit/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Product editProduct(@PathVariable Product product, @PathVariable Long id){
+    public Product editProduct(@RequestBody Product product, @PathVariable Long id){
 
         Product productDB = serv.findById(id);
 
