@@ -9,10 +9,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
@@ -27,6 +32,9 @@ public class ItemController {
     @Qualifier("feignService")
     //@Qualifier("restTemplateService")
     private IItemService serv;
+
+    @Value("${configuration.text}")
+    private String configText;
 
     @GetMapping("/list")
     public List<Item> list(@RequestParam(name="nombre") String nombre, @RequestHeader(name="token-request", required = false) String token){
@@ -87,5 +95,17 @@ public class ItemController {
         item.setProduct(product);
 
         return CompletableFuture.supplyAsync(() -> item);
+    }
+
+    @GetMapping("/get-config")
+    public ResponseEntity<?> getCOnfiguration(@Value("${server.port}") String port){
+
+        log.info(configText);
+
+        Map<String, String> json = new HashMap<>();
+        json.put("configText", configText);
+        json.put("port", port);
+
+        return new ResponseEntity<Map<String, String>>(json, HttpStatus.OK);
     }
 }
