@@ -2,6 +2,7 @@ package com.udemy.itemservice.Service;
 
 import com.udemy.itemservice.Client.ProductRestClient;
 import com.udemy.itemservice.Model.Item;
+import com.udemy.itemservice.Model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,20 @@ public class ItemServiceFeign implements IItemService{
     @Override
     public Item findById(Long id, Integer quantity) {
         return new Item(feignClient.detail(id), quantity);
+    }
+
+    @Override
+    public Product save(Product product) {
+        return null;
+    }
+
+    @Override
+    public Product update(Product product, Long id) {
+        return null;
+    }
+
+    @Override
+    public void delete(Long id) {
+
     }
 }

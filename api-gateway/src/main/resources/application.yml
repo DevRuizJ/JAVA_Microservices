@@ -23,7 +23,7 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: product-service
+        - id: product-server
           uri: lb://product-service
           predicates:
             - Path=/api/product/**
@@ -41,7 +41,7 @@ spring:
                 coockieName: user
                 coockieValor: JRuiz
         - id: item-service
-          uri: lb://item-service
+          uri: lb://item-server
           predicates:
             - Path=/api/item/**
           filters:

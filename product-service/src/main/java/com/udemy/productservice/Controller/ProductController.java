@@ -5,9 +5,8 @@ import com.udemy.productservice.Service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -69,4 +68,29 @@ public class ProductController {
         return product;
 
     }
+
+    @PostMapping("/create")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Product createProduct(@RequestBody Product product){
+        return serv.save(product);
+    }
+
+    @PutMapping("/edit/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Product editProduct(@PathVariable Product product, @PathVariable Long id){
+
+        Product productDB = serv.findById(id);
+
+        productDB.setName(product.getName());
+        productDB.setPrice(product.getPrice());
+
+        return serv.save(productDB);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteProduct(@PathVariable Long id){
+        serv.deleteById(id);
+    }
+
 }
