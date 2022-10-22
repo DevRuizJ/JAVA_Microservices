@@ -1,6 +1,6 @@
 package com.udemy.itemservice.Client;
 
-import com.udemy.itemservice.Model.Product;
+import com.example.commonslibrary.Entity.Product;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 

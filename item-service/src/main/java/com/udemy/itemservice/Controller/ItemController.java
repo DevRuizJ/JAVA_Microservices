@@ -1,7 +1,7 @@
 package com.udemy.itemservice.Controller;
 
+import com.example.commonslibrary.Entity.Product;
 import com.udemy.itemservice.Model.Item;
-import com.udemy.itemservice.Model.Product;
 import com.udemy.itemservice.Service.IItemService;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.timelimiter.annotation.TimeLimiter;

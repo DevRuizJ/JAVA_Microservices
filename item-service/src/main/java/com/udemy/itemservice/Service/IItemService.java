@@ -1,7 +1,7 @@
 package com.udemy.itemservice.Service;
 
+import com.example.commonslibrary.Entity.Product;
 import com.udemy.itemservice.Model.Item;
-import com.udemy.itemservice.Model.Product;
 
 import java.util.List;
 

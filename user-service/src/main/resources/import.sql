@@ -1,0 +1,1 @@
+INSERT INTO userT (username, password, enabled, name, last_name, email) VALUES ('jruiz', '12345', 1, 'Javier', 'Ruiz', 'jruiz@email.com');

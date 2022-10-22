@@ -1,6 +1,6 @@
 package com.udemy.productservice.Service.Implement;
 
-import com.udemy.productservice.Entity.Product;
+import com.example.commonslibrary.Entity.Product;
 import com.udemy.productservice.Repository.IProductRepository;
 import com.udemy.productservice.Service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;

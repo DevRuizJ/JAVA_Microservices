@@ -1,5 +1,7 @@
 package com.udemy.itemservice.Model;
 
+import com.example.commonslibrary.Entity.Product;
+
 public class Item {
 
     private Product _product;

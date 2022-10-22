@@ -1,6 +1,7 @@
 package com.udemy.productservice.Controller;
 
-import com.udemy.productservice.Entity.Product;
+
+import com.example.commonslibrary.Entity.Product;
 import com.udemy.productservice.Service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

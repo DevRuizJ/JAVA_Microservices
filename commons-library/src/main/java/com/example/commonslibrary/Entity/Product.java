@@ -1,4 +1,4 @@
-package com.udemy.productservice.Entity;
+package com.example.commonslibrary.Entity;
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -1,7 +1,7 @@
 package com.udemy.itemservice.Service.Implement;
 
+import com.example.commonslibrary.Entity.Product;
 import com.udemy.itemservice.Model.Item;
-import com.udemy.itemservice.Model.Product;
 import com.udemy.itemservice.Service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;

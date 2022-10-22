@@ -1,10 +1,9 @@
 package com.udemy.itemservice.Service;
 
+import com.example.commonslibrary.Entity.Product;
 import com.udemy.itemservice.Client.ProductRestClient;
 import com.udemy.itemservice.Model.Item;
-import com.udemy.itemservice.Model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

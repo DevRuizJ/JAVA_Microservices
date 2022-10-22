@@ -50,3 +50,9 @@ spring:
             - AddResponseHeader=token-response, 12345678
             - SetResponseHeader=Content-Type, application/json
             - AddRequestParameter=nombre, jruiz
+        - id: user-server
+          uri: lb://user-service
+          predicates:
+            - Path=/api/user/**
+          filters:
+            - StripPrefix=2
