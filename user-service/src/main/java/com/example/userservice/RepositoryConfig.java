@@ -1,7 +1,7 @@
 package com.example.userservice;
 
-import com.example.userservice.Entity.Role;
-import com.example.userservice.Entity.User;
+import com.example.commonslibrary.Entity.Role;
+import com.example.commonslibrary.Entity.User;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;

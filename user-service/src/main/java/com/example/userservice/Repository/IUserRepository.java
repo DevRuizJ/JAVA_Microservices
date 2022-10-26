@@ -1,6 +1,6 @@
 package com.example.userservice.Repository;
 
-import com.example.userservice.Entity.User;
+import com.example.commonslibrary.Entity.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
