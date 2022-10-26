@@ -8,11 +8,11 @@ import java.util.List;
 @Table(name = "roleT")
 public class Role implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, length = 20)
-    private String name;
+    @Column(name = "role_name", unique = true, length = 20)
+    private String roleName;
 
     //@ManyToMany(fetch = FetchType.LAZY, mappedBy = "roleList")
     //private List<User> userList;
@@ -20,16 +20,17 @@ public class Role implements Serializable {
     public Long getId() {
         return id;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getName() {
+        return roleName;
+    }
+
+    public void setName(String roleName) {
+        this.roleName = roleName;
+    }
+
+
 }

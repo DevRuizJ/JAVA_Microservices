@@ -28,10 +28,10 @@ public class User implements Serializable {
     private String email;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_to_roleList",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"),
-            uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role_id"})})
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "userT_id"),
+            inverseJoinColumns = @JoinColumn(name = "roleT_id"),
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"userT_id", "roleT_id"})})
     private List<Role> roleList;
 
 
@@ -59,12 +59,12 @@ public class User implements Serializable {
         this.enabled = enabled;
     }
 
-    public String getNamre() {
+    public String getName() {
         return name;
     }
 
-    public void setNamre(String namre) {
-        this.name = namre;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLastName() {
