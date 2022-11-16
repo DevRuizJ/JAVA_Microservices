@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
         <module name="commons-library" />
+        <module name="OAuth-service" />
         <module name="api-gateway" />
         <module name="item-service" />
         <module name="product-service" />
@@ -21,12 +22,14 @@
       <module name="config-server" target="11" />
       <module name="eureka-server" target="11" />
       <module name="item-service" target="11" />
+      <module name="OAuth-service" target="11" />
       <module name="product-service" target="11" />
       <module name="user-service" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="OAuth-service" options="-parameters" />
       <module name="api-gateway" options="-parameters" />
       <module name="commons-library" options="-parameters" />
       <module name="config-server" options="-parameters" />

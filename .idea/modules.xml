@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/OAuth-service/OAuth-service.iml" filepath="$PROJECT_DIR$/OAuth-service/OAuth-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Udemy.iml" filepath="$PROJECT_DIR$/.idea/Udemy.iml" />
       <module fileurl="file://$PROJECT_DIR$/api-gateway/api-gateway.iml" filepath="$PROJECT_DIR$/api-gateway/api-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/commons-library/commons-library.iml" filepath="$PROJECT_DIR$/commons-library/commons-library.iml" />
