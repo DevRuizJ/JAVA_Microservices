@@ -42,7 +42,7 @@ public class ItemController {
     @Autowired
     private Environment env;
 
-    @GetMapping("/list")
+    @GetMapping
     public List<Item> list(@RequestParam(name="nombre", required = false) String nombre, @RequestHeader(name="token-request", required = false) String token){
 
         System.out.println(nombre);

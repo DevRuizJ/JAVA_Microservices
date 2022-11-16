@@ -25,7 +25,7 @@ public class ProductController {
     @Autowired
     private IProductService serv;
 
-    @GetMapping("/list")
+    @GetMapping
     public List<Product> list(){
 
         return serv.findALl().stream().map(product -> {
