@@ -25,7 +25,7 @@ public class ItemImpl implements IItemService {
     @Override
     public List<Item> findAll() {
 
-        List<Product> products = Arrays.asList(rest.getForObject("http://product-service/list", Product[].class));
+        List<Product> products = Arrays.asList(rest.getForObject("http://product-service", Product[].class));
 
         return products.stream().map(p -> new Item(p, 1)).collect(Collectors.toList());
     }

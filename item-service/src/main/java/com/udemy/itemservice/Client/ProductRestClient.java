@@ -9,7 +9,7 @@ import java.util.List;
 @FeignClient(name = "product-service"/*, url = "${product-service.ribbon.listOfServers}"*/)
 public interface ProductRestClient {
 
-    @GetMapping("/list")
+    @GetMapping
     public List<Product> list();
     @GetMapping("/detail/{id}")
     public Product detail(@PathVariable Long id);

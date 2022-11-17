@@ -27,11 +27,11 @@ spring:
           uri: lb://product-service
           predicates:
             - Path=/api/product/**
-            - Header=token, \d+
-            - Header=Content-Type, application/json
-            - Method=GET, POST
-            - Query=color, verde
-            - Cookie=color, azul
+            #- Header=token, \d+
+            #- Header=Content-Type, application/json
+            #- Method=GET, POST
+            #- Query=color, verde
+            #- Cookie=color, azul
           filters:
             - CircuitBreaker=products
             - StripPrefix=2
