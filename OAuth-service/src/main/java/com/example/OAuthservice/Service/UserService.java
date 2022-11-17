@@ -24,12 +24,12 @@ public class UserService implements UserDetailsService{
     private UserFeignClient client;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String nombreU) throws UsernameNotFoundException {
 
-        User user = client.findByUsername(username);
+        User user = client.findByUsername(nombreU);
 
         if (user == null){
-            throw new UsernameNotFoundException("Error en el LOGIN, usuario: " + username);
+            throw new UsernameNotFoundException("Error en el LOGIN, usuario: " + nombreU);
         }
 
         List<GrantedAuthority> authorities = user.getRoleList()
@@ -38,7 +38,7 @@ public class UserService implements UserDetailsService{
                 .peek(authority -> log.info("Role: " + authority.getAuthority()))
                 .collect(Collectors.toList());
 
-        log.info("Usuario autenticado: " + username);
+        log.info("Usuario autenticado: " + nombreU);
 
         return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), user.getEnabled(), true, true, true, authorities);
     }
