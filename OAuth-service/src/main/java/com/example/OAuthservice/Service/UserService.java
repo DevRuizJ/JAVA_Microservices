@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UserService implements UserDetailsService{
+public class UserService implements UserDetailsService, IUserService{
 
     private Logger log = LoggerFactory.getLogger(UserService.class);
 
@@ -41,5 +41,10 @@ public class UserService implements UserDetailsService{
         log.info("Usuario autenticado: " + nombreU);
 
         return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), user.getEnabled(), true, true, true, authorities);
+    }
+
+    @Override
+    public User findByUsername(String nombreU) {
+        return client.findByUsername(nombreU);
     }
 }
