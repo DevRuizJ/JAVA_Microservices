@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationEventPublisher;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,6 +24,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService serv;
 
+    @Autowired
+    private AuthenticationEventPublisher eventPublisher;
+
     @Bean
     public static BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -31,7 +35,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     @Autowired
     public void configure(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(serv).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(serv).passwordEncoder(passwordEncoder())
+                .and()
+                .authenticationEventPublisher(eventPublisher);
     }
 
     @Override
